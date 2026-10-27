@@ -1,0 +1,286 @@
+﻿EVIDENCIAS - tarefas-api - gerado em 27/10/2026 19:29:58
+
+===== AMBIENTE (27/10/2026 19:29:58) =====
+> docker --version
+Docker version 29.9.1, build dfc520d
+> docker compose version
+Docker Compose version v5.6.0
+> kubectl version --client
+Client Version: v1.36.1
+Kustomize Version: v5.8.1
+> minikube version
+minikube version: v1.39.0
+commit: 7a9f6a841470a207de8cf4bafcccee0969d8ba10
+
+===== DOCKER (27/10/2026 19:29:59) =====
+> docker build -t tarefas-api:1.0 ./app
+ 
+
+#1 [internal] load build definition from Dockerfile
+#1 DONE 0.0s
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 178B done
+#1 DONE 0.1s
+
+#2 [internal] load metadata for docker.io/library/node:24-alpine
+#2 DONE 0.7s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 67B done
+#3 DONE 0.0s
+
+#4 [internal] load build context
+#4 transferring context: 125B done
+#4 DONE 0.0s
+
+#5 [1/5] FROM docker.io/library/node:24-alpine@sha256:06d7adf3e0ef61a13f1d28682726366f97a15aa1888c934d3ecec86c33918b53
+#5 resolve docker.io/library/node:24-alpine@sha256:06d7adf3e0ef61a13f1d28682726366f97a15aa1888c934d3ecec86c33918b53 
+0.0s done
+#5 DONE 0.0s
+
+#6 [3/5] COPY package*.json ./
+#6 CACHED
+
+#7 [2/5] WORKDIR /app
+#7 CACHED
+
+#8 [4/5] RUN npm install --omit=dev
+#8 CACHED
+
+#9 [5/5] COPY . .
+#9 CACHED
+
+#10 exporting to image
+#10 exporting layers done
+#10 exporting manifest sha256:c6b654d1565e9d55814b524283caf9b5faaf802da5b85787b6d056ced0d72099 done
+#10 exporting config sha256:1b67468982ae63d6954bb0da509aac6265f0e1035ed64b2f3e2adc298ebe2b96 done
+#10 exporting attestation manifest sha256:2125077f5baa3e973d7e1f5d66acca1edfb955909a360e47b836c07a3378eab8
+#10 exporting attestation manifest sha256:2125077f5baa3e973d7e1f5d66acca1edfb955909a360e47b836c07a3378eab8 0.0s done
+#10 exporting manifest list sha256:6b3bac9a6150f05d626cc3f3c3c1ebed90031251d9da10aa036a235c94af8cd0 0.0s done
+#10 naming to docker.io/library/tarefas-api:1.0 done
+#10 unpacking to docker.io/library/tarefas-api:1.0 0.0s done
+#10 DONE 0.1s
+> docker image ls tarefas-api
+IMAGE             ID             DISK USAGE   CONTENT SIZE   EXTRA
+tarefas-api:1.0   6b3bac9a6150        266MB           66MB
+
+===== COMPOSE (27/10/2026 19:30:08) =====
+> docker compose up -d --build
+ 
+ Image postgres:17-alpine Pulled 
+ Image tarefas-api-api Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 539B 0.0s done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 178B 0.0s done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/node:24-alpine
+#3 DONE 0.4s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 67B done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 125B done
+#5 DONE 0.0s
+
+#6 [1/5] FROM docker.io/library/node:24-alpine@sha256:06d7adf3e0ef61a13f1d28682726366f97a15aa1888c934d3ecec86c33918b53
+#6 resolve docker.io/library/node:24-alpine@sha256:06d7adf3e0ef61a13f1d28682726366f97a15aa1888c934d3ecec86c33918b53 0.0s done
+#6 DONE 0.0s
+
+#7 [4/5] RUN npm install --omit=dev
+#7 CACHED
+
+#8 [2/5] WORKDIR /app
+#8 CACHED
+
+#9 [3/5] COPY package*.json ./
+#9 CACHED
+
+#10 [5/5] COPY . .
+#10 CACHED
+
+#11 exporting to image
+#11 exporting layers done
+#11 exporting manifest sha256:b2519d23d85655f4f0415f6f778494cc243f23d32b9d4b8bf9d8c3c1d649aedc 0.0s done
+#11 exporting config sha256:bfda37d6ede48a5299e07efa496fc3d0d8ca60e322de84cd12f32c0b55be4379
+#11 exporting config sha256:bfda37d6ede48a5299e07efa496fc3d0d8ca60e322de84cd12f32c0b55be4379 0.0s done
+#11 exporting attestation manifest sha256:dace7fbdff7e756e1248743465438bb1d56dd6f00d39789050fb37aea2be5f3b 0.0s done
+#11 exporting manifest list sha256:53b8efaf69c304873712da17ee400366f548afb6ef035a28e27dc16c3f1ce624
+#11 exporting manifest list sha256:53b8efaf69c304873712da17ee400366f548afb6ef035a28e27dc16c3f1ce624 0.0s done
+#11 naming to docker.io/library/tarefas-api-api:latest done
+#11 unpacking to docker.io/library/tarefas-api-api:latest done
+#11 DONE 0.2s
+
+#12 resolving provenance for metadata file
+#12 DONE 0.6s
+ Image tarefas-api-api Built 
+ Network tarefas-api_default Creating 
+ Volume tarefas-api_dados Creating 
+ Network tarefas-api_default Creating 
+ Volume tarefas-api_dados Creating 
+ Volume tarefas-api_dados Created 
+ Volume tarefas-api_dados Created 
+ Network tarefas-api_default Created 
+ Network tarefas-api_default Created 
+ Container tarefas-api-db-1 Creating 
+ Container tarefas-api-db-1 Created 
+ Container tarefas-api-api-1 Creating 
+ Container tarefas-api-api-1 Created 
+ Container tarefas-api-db-1 Starting 
+ Container tarefas-api-db-1 Started 
+ Container tarefas-api-db-1 Waiting 
+ Container tarefas-api-db-1 Healthy 
+ Container tarefas-api-api-1 Starting 
+ Container tarefas-api-api-1 Started
+> docker compose ps
+NAME                IMAGE                COMMAND                  SERVICE   CREATED          STATUS                    PORTS
+tarefas-api-api-1   tarefas-api-api      "docker-entrypoint.s…"   api       11 seconds ago   Up 4 seconds              0.0.0.0:3000->3000/tcp, [::]:3000->3000/tcp
+tarefas-api-db-1    postgres:17-alpine   "docker-entrypoint.s…"   db        11 seconds ago   Up 10 seconds (healthy)   5432/tcp
+> Invoke-RestMethod http://localhost:3000/saude | ConvertTo-Json -Compress
+{"status":"ok"}
+> Invoke-RestMethod -Method Post http://localhost:3000/tarefas -ContentType 'application/json' -Body '{"titulo":"Apresentar seminario"}' | ConvertTo-Json -Compress
+{"id":1,"titulo":"Apresentar seminario","concluida":false}
+> Invoke-RestMethod http://localhost:3000/tarefas | ConvertTo-Json -Compress
+{"value":[{"id":1,"titulo":"Apresentar seminario","concluida":false}],"Count":1}
+# Teste de persistencia: down + up
+> docker compose down
+ 
+ Container tarefas-api-api-1 Stopped 
+ Container tarefas-api-api-1 Removing 
+ Container tarefas-api-api-1 Removed 
+ Container tarefas-api-db-1 Stopping 
+ Container tarefas-api-db-1 Stopped 
+ Container tarefas-api-db-1 Removing 
+ Container tarefas-api-db-1 Removed 
+ Network tarefas-api_default Removing 
+ Network tarefas-api_default Removed
+> docker compose up -d
+ 
+ Network tarefas-api_default Creating 
+ Network tarefas-api_default Created 
+ Network tarefas-api_default Created 
+ Container tarefas-api-db-1 Creating 
+ Container tarefas-api-db-1 Created 
+ Container tarefas-api-api-1 Creating 
+ Container tarefas-api-api-1 Created 
+ Container tarefas-api-db-1 Starting 
+ Container tarefas-api-db-1 Started 
+ Container tarefas-api-db-1 Waiting 
+ Container tarefas-api-db-1 Healthy 
+ Container tarefas-api-api-1 Starting 
+ Container tarefas-api-api-1 Started
+> Invoke-RestMethod http://localhost:3000/tarefas | ConvertTo-Json -Compress
+{"value":[{"id":1,"titulo":"Apresentar seminario","concluida":false}],"Count":1}
+> docker compose down
+ 
+ Container tarefas-api-api-1 Stopped 
+ Container tarefas-api-api-1 Removing 
+ Container tarefas-api-api-1 Removed 
+ Container tarefas-api-db-1 Stopping 
+ Container tarefas-api-db-1 Stopped 
+ Container tarefas-api-db-1 Removing 
+ Container tarefas-api-db-1 Removed 
+ Network tarefas-api_default Removing 
+ Network tarefas-api_default Removed
+
+===== KUBERNETES (27/10/2026 19:31:13) =====
+> minikube start --driver=docker
+* minikube v1.39.0 em Microsoft Windows 11 Pro 25H2
+* Usando o driver docker com base na configuração do usuário
+* Usando o driver Docker Desktop com privilégios de root
+* Iniciando o nó primary control-plane "minikube" no cluster "minikube"
+* Baixando a imagem base v0.0.51 ...
+* Baixando o preload do Kubernetes v1.37.0 ...
+* Preparando o Kubernetes v1.37.0 no containerd 2.3.4 ...
+* Configurando CNI (Container Networking Interface) ...
+* Verificando os componentes do Kubernetes...
+  - Usando a imagem gcr.io/k8s-minikube/storage-provisioner:v5
+* Complementos habilitados: storage-provisioner, default-storageclass
+* Concluído! O kubectl agora está configurado para usar o cluster "minikube" e o namespace "default" por padrão
+> minikube image load tarefas-api:1.0
+
+> kubectl apply -f k8s/
+deployment.apps/tarefas-api created
+service/tarefas-api created
+deployment.apps/db created
+service/db created
+> kubectl rollout status deployment/db --timeout=180s
+Waiting for deployment "db" rollout to finish: 0 of 1 updated replicas are available...
+deployment "db" successfully rolled out
+> kubectl rollout status deployment/tarefas-api --timeout=180s
+Waiting for deployment "tarefas-api" rollout to finish: 0 of 3 updated replicas are available...
+Waiting for deployment "tarefas-api" rollout to finish: 1 of 3 updated replicas are available...
+Waiting for deployment "tarefas-api" rollout to finish: 2 of 3 updated replicas are available...
+deployment "tarefas-api" successfully rolled out
+> kubectl get pods -o wide
+NAME                           READY   STATUS    RESTARTS   AGE   IP           NODE       NOMINATED NODE   READINESS GATES
+db-bb9444665-wn2nv             1/1     Running   0          93s   10.244.0.3   minikube   <none>           <none>
+tarefas-api-78885b4fc6-gvj9d   1/1     Running   0          93s   10.244.0.5   minikube   <none>           <none>
+tarefas-api-78885b4fc6-mmb9w   1/1     Running   0          93s   10.244.0.2   minikube   <none>           <none>
+tarefas-api-78885b4fc6-slkjv   1/1     Running   0          93s   10.244.0.4   minikube   <none>           <none>
+> kubectl port-forward svc/tarefas-api 8080:80   (processo em segundo plano, PID 17560)
+> Invoke-RestMethod http://localhost:8080/saude | ConvertTo-Json -Compress
+{"status":"ok"}
+> Invoke-RestMethod -Method Post http://localhost:8080/tarefas -ContentType 'application/json' -Body '{"titulo":"Demo no Kubernetes"}' | ConvertTo-Json -Compress
+{"id":1,"titulo":"Demo no Kubernetes","concluida":false}
+> Invoke-RestMethod http://localhost:8080/tarefas | ConvertTo-Json -Compress
+{"value":[{"id":1,"titulo":"Demo no Kubernetes","concluida":false}],"Count":1}
+
+===== AUTO-RECUPERACAO (27/10/2026 19:38:02) =====
+> kubectl get pods -l app=tarefas-api
+NAME                           READY   STATUS    RESTARTS   AGE
+tarefas-api-78885b4fc6-gvj9d   1/1     Running   0          112s
+tarefas-api-78885b4fc6-mmb9w   1/1     Running   0          112s
+tarefas-api-78885b4fc6-slkjv   1/1     Running   0          112s
+> kubectl delete pod tarefas-api-78885b4fc6-gvj9d
+pod "tarefas-api-78885b4fc6-gvj9d" deleted from default namespace
+> kubectl get pods -l app=tarefas-api
+NAME                           READY   STATUS    RESTARTS   AGE
+tarefas-api-78885b4fc6-bkhfj   1/1     Running   0          32s
+tarefas-api-78885b4fc6-mmb9w   1/1     Running   0          2m24s
+tarefas-api-78885b4fc6-slkjv   1/1     Running   0          2m24s
+> kubectl wait --for=condition=Ready pod -l app=tarefas-api --timeout=90s
+pod/tarefas-api-78885b4fc6-bkhfj condition met
+pod/tarefas-api-78885b4fc6-mmb9w condition met
+pod/tarefas-api-78885b4fc6-slkjv condition met
+> kubectl get pods -l app=tarefas-api
+NAME                           READY   STATUS    RESTARTS   AGE
+tarefas-api-78885b4fc6-bkhfj   1/1     Running   0          32s
+tarefas-api-78885b4fc6-mmb9w   1/1     Running   0          2m24s
+tarefas-api-78885b4fc6-slkjv   1/1     Running   0          2m24s
+
+===== ESCALONAMENTO (27/10/2026 19:38:34) =====
+> kubectl scale deployment tarefas-api --replicas=5
+deployment.apps/tarefas-api scaled
+> kubectl rollout status deployment/tarefas-api --timeout=120s
+Waiting for deployment "tarefas-api" rollout to finish: 3 of 5 updated replicas are available...
+Waiting for deployment "tarefas-api" rollout to finish: 4 of 5 updated replicas are available...
+deployment "tarefas-api" successfully rolled out
+> kubectl get pods -l app=tarefas-api
+NAME                           READY   STATUS    RESTARTS   AGE
+tarefas-api-78885b4fc6-bkhfj   1/1     Running   0          44s
+tarefas-api-78885b4fc6-mmb9w   1/1     Running   0          2m36s
+tarefas-api-78885b4fc6-nl477   1/1     Running   0          12s
+tarefas-api-78885b4fc6-slkjv   1/1     Running   0          2m36s
+tarefas-api-78885b4fc6-slnjz   1/1     Running   0          12s
+> kubectl get deployment tarefas-api
+NAME          READY   UP-TO-DATE   AVAILABLE   AGE
+tarefas-api   5/5     5            5           2m36s
+
+===== LIMPEZA (27/10/2026 19:40:55) =====
+> port-forward encerrado
+> kubectl delete -f k8s/
+deployment.apps "tarefas-api" deleted from default namespace
+service "tarefas-api" deleted from default namespace
+deployment.apps "db" deleted from default namespace
+service "db" deleted from default namespace
+> minikube stop
+* Parando o nó "minikube"  ...
+* Desligando "minikube" via SSH ...
+* 1 nó parado.

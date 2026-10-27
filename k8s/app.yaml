@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: { name: tarefas-api }
+spec:
+  replicas: 3
+  selector: { matchLabels: { app: tarefas-api } }
+  template:
+    metadata: { labels: { app: tarefas-api } }
+    spec:
+      containers:
+        - name: api
+          image: tarefas-api:1.0
+          ports: [{ containerPort: 3000 }]
+          env:
+            - name: DATABASE_URL
+              value: postgres://app:app@db:5432/tarefas
+          readinessProbe:
+            httpGet: { path: /saude, port: 3000 }
+          resources:
+            limits: { cpu: 250m, memory: 256Mi }
+---
+apiVersion: v1
+kind: Service
+metadata: { name: tarefas-api }
+spec:
+  type: NodePort
+  selector: { app: tarefas-api }
+  ports: [{ port: 80, targetPort: 3000 }]
